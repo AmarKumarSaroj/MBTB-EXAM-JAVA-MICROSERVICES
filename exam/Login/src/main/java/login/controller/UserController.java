@@ -10,6 +10,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,7 +58,7 @@ public class UserController {
 		return "Welcome";
 	}
 
-
+	@Async
 	@PostMapping("/signin")
 	public ResponseEntity<AuthResponse> signin(@RequestBody User loginRequest) {
 		String username = loginRequest.getUsername();
@@ -126,9 +127,14 @@ public class UserController {
 		
 		logger.info("AuthResponse : " + authResponse);
 
+
+
+
+
 		return new ResponseEntity<>(authResponse, HttpStatus.OK);
 	}
 
+	@Async
 	private Authentication authenticate(String username, String password) {
 
 		System.out.println(username + "---++----" + password);
@@ -159,6 +165,10 @@ public class UserController {
 		return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 
 	}
+
+
+
+
 
 	/*
 	

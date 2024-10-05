@@ -15,7 +15,7 @@ import login.controller.UserController;
 @SpringBootApplication
 public class Login extends SpringBootServletInitializer{
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) {
 		
 		SpringApplication.run(Login.class, args);
 		
